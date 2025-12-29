@@ -1,0 +1,396 @@
+﻿/* =====================================================
+   Global Reset
+   Purpose: Remove default browser spacing
+   ===================================================== */
+/* Reset everything to zero so I can control the spacing myself */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   Body Background (Requirement #4)
+   ===================================================== */
+/* Set up the main font, cream background, and text color for the whole site */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #FDF0D5;   /* Cream color matches the Burmese theme */
+    color: #780000;              /* Dark red text looks good on cream */
+    line-height: 1.6;
+}
+
+/* =====================================================
+   Main Layout Container
+   ===================================================== */
+/* Keeps the content centered and puts the menu next to the content */
+.container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    display: flex; 
+    gap: 1.5rem;
+    align-items: flex-start; /* Stops the menu from stretching out */
+}
+
+/* The box for the left-side navigation menu */
+.side-nav {
+    width: 230px;
+    background-color: #FFF6E8;
+    border-radius: 14px;
+    padding: 1.2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    position: sticky; /* Makes the menu follow you when you scroll */
+    top: 1.5rem;
+    height: fit-content;
+}
+
+/* =====================================================
+   Left Navigation Menu
+   ===================================================== */
+/* The header text that says "Navigation Menu" */
+.nav-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #8b4a10;
+}
+
+/* Get rid of the default bullet points */
+.side-nav ul {
+    list-style: none;
+}
+
+/* Add a little space between the menu links */
+.side-nav li {
+    margin-bottom: 0.6rem;
+}
+
+/* Make the menu links look nice (no underlines, brown color) */
+.side-nav a {
+    text-decoration: none;
+    color: #6b3d12;
+    font-weight: 600;
+}
+
+/* Turn the link orange if it is the page we are currently looking at */
+.side-nav .active a {
+    color: #d87b1f; 
+}
+
+/* =====================================================
+   Right Content Area
+   ===================================================== */
+/* Fills up the rest of the space next to the side menu */
+.content-area {
+    flex: 1;
+}
+
+/* The big title at the top of each page */
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    color: #780000;
+}
+
+/* =====================================================
+   Dish Box (Requirement: Layers/Blocks)
+   ===================================================== */
+/* The white card container for each recipe */
+.dish-box {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 1.4rem;
+    margin-bottom: 1.6rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* =====================================================
+   Dish Image Shuffle
+   ===================================================== */
+/* Holds the images and hides anything that sticks out */
+.dish-image {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+/* Stack the images on top of each other and hide them initially */
+.dish-image img {
+    border-radius: 14px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;             
+    transition: opacity 0.4s ease; /* Makes the fade animation smooth */
+}
+
+/* This class is added by Javascript to show the image */
+.dish-image img.active-img {
+    opacity: 1; 
+}
+
+/* =====================================================
+   Dish Summary Text
+   ===================================================== */
+/* Spacing for the text area under the image */
+.dish-summary {
+    margin-top: 1rem;
+}
+
+/* The name of the dish */
+.dish-summary h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+/* The description paragraph */
+.dish-summary p {
+    font-size: 0.95rem;
+}
+
+/* =====================================================
+   Toggle Button
+   ===================================================== */
+/* The button you click to see the full recipe */
+.toggle-btn {
+    margin-top: 0.7rem;
+    padding: 0.45rem 0.9rem;
+    background-color: #ffe1bf;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* The little arrow icon inside the button */
+.toggle-btn .arrow {
+    display: inline-block;
+    margin-right: 0.4rem;
+    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* Flips the arrow upside down when the recipe is open */
+.toggle-btn.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* =====================================================
+   Hidden Recipe Section
+   ===================================================== */
+/* Hides the recipe details until the button is clicked */
+.dish-recipe {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #d4b48c;
+    transition: all 0.3s ease;
+}
+
+/* Javascript adds this class to make the recipe appear */
+.dish-recipe.show {
+    display: block;
+}
+
+/* =====================================================
+   Recipe Info Table (Requirement: Tables)
+   ===================================================== */
+/* General settings for the nutrition table */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    table-layout: fixed;
+}
+
+/* Borders and spacing for table cells */
+.info-table th,
+.info-table td {
+    border: 1px solid #e0cdb0;
+    padding: 0.45rem;
+    text-align: left;
+    font-size: 0.9rem;
+    width: 70%;
+}
+
+/* Different background color for table headers */
+.info-table th {
+    background-color: #fff2df;
+    width: 30%;
+    text-align: left;
+}
+
+/* =====================================================
+   Multimedia (Requirement: Embedded Media)
+   ===================================================== */
+/* Wrapper to hold the Spotify player */
+.spotify-embed {
+    width: 100%;
+    margin: 0 0 0.5rem 0; 
+}
+
+/* Make sure the Spotify player fits the box */
+.spotify-embed iframe {
+    width: 100%;
+    height: 200px;
+    display: block;
+    border: none;
+    border-radius: 12px;
+}
+/* Wrapper for YouTube videos to keep the aspect ratio correct */
+.video-wrap {
+    margin-top: 0.8rem;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(90, 60, 30, 0.25);
+    background: rgba(0,0,0,0.08);
+}
+
+/* Make the video fill the width */
+.video-wrap iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+}
+
+/* =====================================================
+   Home Page Specific Styles
+   ===================================================== */
+/* Wrapper for homepage content */
+.home-wrap {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+}
+
+/* Header Container (Holds both images and text) */
+.site-header {
+    width: 100%;
+    position: relative; /* Needed to stack text over images */
+    padding: 0;         /* Padding is moved to inner content */
+    margin-bottom: 1.5rem;
+    overflow: hidden;   /* Keeps images inside the box */
+    border-radius: 14px; /* Optional: rounds the corners */
+}
+
+/* The Background Images */
+.header-shuffle {
+    position: absolute; /* Sits behind text */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;         /* Layer 1 (Bottom) */
+}
+
+/* Header Image Styling (Same fade logic as dishes) */
+.header-shuffle img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures image covers the whole area */
+    opacity: 0;         /* Hidden by default */
+    transition: opacity 1.5s ease; /* Slower fade for header */
+}
+
+/* Visible Image */
+.header-shuffle img.active-img {
+    opacity: 1;
+}
+
+/* The Text Content */
+.header-content {
+    position: relative;
+    z-index: 2;         /* Layer 2 (Top) */
+    padding: 3rem 1rem; /* More space for the header */
+    text-align: center;
+    /* Dark overlay so text is readable on any image */
+    background: rgba(0, 0, 0, 0.3); 
+}
+
+/* Homepage main title */
+.header-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: #F9E139; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* Shadow makes text pop */
+}
+
+/* Homepage subtitle */
+.header-content p {
+    font-size: 1.1rem;
+    color: #F9E139;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+/* =====================================================
+   Top Navigation (Home Page Only)
+   ===================================================== */
+/* The pill-shaped menu bar on the homepage */
+.top-nav {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(90, 60, 30, 0.25);
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  margin: 1rem 0 1.2rem;
+}
+
+/* Centers the links inside the menu bar */
+.top-nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for the links in the top menu */
+.top-nav-links a {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+}
+
+/* Hover effect for the top menu links */
+.top-nav-links a:hover,
+.top-nav-links li.active a {
+  border-color: rgba(90, 60, 30, 0.35);
+  background: rgba(255,255,255,0.85);
+}
+
+/* =====================================================
+   Footer and Responsive Design
+   ===================================================== */
+/* Simple footer at the bottom */
+.home-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  opacity: 0.85;
+}
+
+/* Utility class for underlining text */
+.text-underline {
+    text-decoration: underline;
+}
+
+/* Responsive: Change layout for mobile screens */
+@media (max-width: 900px) {
+    /* Stack the side menu on top of the content */
+    .container {
+        flex-direction: column;
+    }
+    /* Make the side menu take full width */
+    .side-nav {
+        width: 100%;
+    }
+    /* Make the header text smaller so it fits */
+    .site-header h1 { 
+        font-size: 1.7rem; 
+    }
+}

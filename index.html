@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Myanmar Food</title>
+  <link rel="stylesheet" href="site.css" />
+</head>
+
+<body>
+
+  <div class="home-wrap">
+
+    <header class="site-header">
+    
+    <div class="header-shuffle">
+        <img class="active-img" src="header.jpg" alt="Header Image 1">
+        <img src="header1.jpg" alt="Header Image 2">
+        <img src="header3.jpg" alt="Header Image 3">
+
+    </div>
+
+    <div class="header-content">
+        <h1>Discover Myanmar Food</h1>
+        <p class="site-subtitle">
+            Exploring Burmese culture, traditions, and authentic cuisine
+        </p>
+    </div>
+</header>
+    <nav class="top-nav">
+      <ul class="top-nav-links">
+        <li class="active"><a href="index.html">About</a></li>
+        <li><a href="noodles.html">Noodle Soups</a></li>
+        <li><a href="salads.html">Cold Noodles & Salads</a></li>
+        <li><a href="rice.html">Rice Dishes</a></li>
+        <li><a href="curry.html">Curries</a></li>
+        <li><a href="sides.html">Side Dishes</a></li>
+        <li><a href="desserts.html">Desserts</a></li>
+      </ul>
+    </nav>
+
+    <main class="home-main">
+
+      <section class="section-box">
+        <h2>Welcome to the Golden Land: Introduction to Myanmar</h2>
+        <p>
+          Myanmar, often referred to as the "Golden Land" for its thousands of glittering pagodas, 
+          is a nation of breathtaking beauty and deep spiritual heritage. Nestled in Southeast Asia 
+          between India, China, and Thailand, it remains one of the region’s most authentic and 
+          untouched destinations. From the snow-capped peaks of the Himalayas in the north to the 
+          pristine beaches of the Andaman Sea in the south, Myanmar is a country of diverse landscapes. 
+          However, its true heart lies in its people—warm, resilient, and deeply hospitable—comprising 
+          over 135 distinct ethnic groups that weave a complex and colorful cultural tapestry.
+        </p>
+        
+        <div class="dish-image shuffle-box">
+          <img class="active-img" alt="Map of Myanmar" src="main/map.jpg">           
+          <img alt="Scenery" src="main/R.jpg">                   
+        </div>
+      </section>
+
+      <section class="section-box">
+        <h2>Culture &amp; Traditions</h2>
+        <p>
+          Myanmar’s culture is a vibrant tapestry woven from deep Buddhist devotion and ancient customs. 
+          Daily life centers around the glittering pagodas where locals make merit, while festivals 
+          like Thingyan (the Water Festival) bring the country to life with joyous celebration. 
+          Traditional dress remains a staple, with both men and women wearing the elegant longyi 
+          and applying natural thanaka paste for beauty and sun protection. Above all, it is a 
+          land of gentleness and respect, where a warm smile is the standard greeting and reverence 
+          for elders guides daily interaction.
+        </p>
+
+        <div class="dish-image shuffle-box">
+          <img class="active-img" alt="Thingyan Festival" src="main/thingyan.jpg">                 
+          <img alt="Buddhism" src="main/buddhist.jpg"> 
+          <img alt="Monks" src="main/monl.jpg">
+          <img alt="Traditional Dress" src="main/S__4456642_0.jpg">           
+          <img alt="Pagoda" src="main/8577667524_dcebe068dc_b.jpg">
+        </div>
+      </section>
+
+      <section class="section-box">
+        <h2>A Taste of Burma: The Cuisine</h2>
+        <p>
+          Burmese food is a hidden gem of Southeast Asian cuisine—a savory fusion of Thai spice, 
+          Indian richness, and Chinese technique, yet distinctively unique. It relies heavily on 
+          <strong>sour, salty, and spicy</strong> flavors.        
+        </p>
+        
+        <h3 class="text-underline">Dinner Etiquette</h3>
+        
+        <p> 
+          A traditional Burmese meal is a communal affair. All dishes—curries, soups, 
+          salads, and vegetables—are served simultaneously in the center of the table.
+        </p>
+        <ul>
+          <li><strong>Rice is the canvas:</strong> Everything is eaten with steamed white rice.</li>
+          <li><strong>Hands on:</strong> Traditionally, food is eaten with the fingers of the right hand, allowing the diner to mix the curry and rice to the perfect texture.</li>
+          <li><strong>Soup to cleanse:</strong> A light, tart broth is almost always served on the side to sip between bites, cleansing the palate of the rich curry oils.</li>
+        </ul>
+        
+        <p>
+          Common ingredients include garlic, onion, turmeric, fish sauce, dried shrimp, 
+          and fresh herbs. You will find noodle soups, salads, curries, side dishes, and desserts. 
+        </p>
+
+        <div class="dish-image shuffle-box">
+          <img class="active-img" alt="Dining" src="main/dining.png">        
+          <img alt="Cuisine" src="main/cuisine.JPG">    
+          <img alt="Myanmar Set Meal" src="main/Myanma_cuisine.jpg">
+        </div>
+      </section>
+
+      <section class="section-box">
+        <h2>Video: Take a look at Myanmar</h2>
+        <div class="video-wrap">
+          <iframe 
+            src="https://www.youtube.com/embed/u2XHhLVkcQk" 
+            title="Introducing Myanmar" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <footer class="home-footer">
+        <p>© 1141 Web Design Final Project — Discover Myanmar Food</p>
+      </footer>
+
+    </main>
+  </div>
+
+ <script>
+    const shuffleIntervals = new Map();
+
+    // Function to start shuffling
+    function startShuffle(container, speed = 1000) {
+      const images = container.querySelectorAll("img");
+      if (images.length <= 1) return;
+
+      let index = 0;
+      if (shuffleIntervals.has(container)) return;
+
+      const interval = setInterval(() => {
+        images.forEach(img => img.classList.remove("active-img"));
+        index = (index + 1) % images.length;
+        images[index].classList.add("active-img");
+      }, speed); // Uses the speed we choose
+
+      shuffleIntervals.set(container, interval);
+    }
+
+    // Function to stop shuffling
+    function stopShuffle(container) {
+      const images = container.querySelectorAll("img");
+      if (!shuffleIntervals.has(container)) return;
+
+      clearInterval(shuffleIntervals.get(container));
+      shuffleIntervals.delete(container);
+
+      // Reset to first image
+      images.forEach(img => img.classList.remove("active-img"));
+      images[0].classList.add("active-img");
+    }
+
+    // Run when page loads
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      // 1. Setup Dish Boxes (Shuffle on Hover)
+      document.querySelectorAll(".dish-image").forEach(container => {
+        container.addEventListener("mouseenter", () => startShuffle(container, 900));
+        container.addEventListener("mouseleave", () => stopShuffle(container));
+      });
+
+      // 2. Setup Header (Shuffle Automatically, Slower Speed)
+      const headerBox = document.querySelector(".header-shuffle");
+      if (headerBox) {
+        startShuffle(headerBox, 3000); // 3000ms = 3 seconds per image
+      }
+
+    });
+  </script>
+
+</body>
+</html>
